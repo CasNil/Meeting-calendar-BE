@@ -20,8 +20,8 @@ public class MeetingService {
         return new MeetingDto(
                 meeting.getId(),
                 meeting.getTitle(),
-                meeting.getStartDate(),
-                meeting.getStartTime(),
+                meeting.getDate(),
+                meeting.getTime(),
                 meeting.getLevel(),
                 meeting.getParticipants(),
                 meeting.getDescription()
@@ -32,8 +32,8 @@ public class MeetingService {
         Meeting meeting = new Meeting();
         meeting.setId(dto.id());
         meeting.setTitle(dto.title());
-        meeting.setStartDate(dto.startDate());
-        meeting.setStartTime(dto.startTime());
+        meeting.setDate(dto.date());
+        meeting.setTime(dto.time());
         meeting.setLevel(dto.level());
         meeting.setParticipants(dto.participants());
         meeting.setDescription(dto.description());
@@ -60,16 +60,21 @@ public class MeetingService {
         return toDto(savedMeeting);
     }
 
-    public void updateMeeting(Long id) {
+    public void updateMeeting(Long id, MeetingDto meetingDto) {
         Meeting meeting = meetingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Meeting not found with ID: " + id));
 
-        meeting.setTitle(meeting.getTitle());
-        meeting.setStartDate(meeting.getStartDate());
-        meeting.setStartTime(meeting.getStartTime());
-        meeting.setLevel(meeting.getLevel());
-        meeting.setParticipants(meeting.getParticipants());
-        meeting.setDescription(meeting.getDescription());
+        meeting.setTitle(meetingDto.title());
+        meeting.setDate(meetingDto.date());
+        meeting.setTime(meetingDto.time());
+        meeting.setLevel(meetingDto.level());
+        if(meetingDto.participants() != null) {
+            meeting.setParticipants(meetingDto.participants());
+        }
+
+        if(meetingDto.description() != null) {
+            meeting.setDescription(meetingDto.description());
+        }
         meetingRepository.save(meeting);
     }
 

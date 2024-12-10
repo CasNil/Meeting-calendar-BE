@@ -18,7 +18,7 @@ public record MeetingDto(
                 regexp = "\\d{4}-\\{2}-\\d{2}",
                 message = "Date must be in the format YYYY-MM-DD"
         )
-        String startDate,
+        String date,
 
         @NotBlank(message = "Time is required")
         @Pattern(
@@ -26,11 +26,11 @@ public record MeetingDto(
                 message = "Time must be in the format HH:MM"
 
         )
-        String startTime,
+        String time,
 
         @NotBlank()
         @Pattern(
-                regexp = "team|department|company",
+                regexp = "Team|Department|Company",
                 message = "Level must be 'Team', 'Department', or 'Company'"
         )
         String level,

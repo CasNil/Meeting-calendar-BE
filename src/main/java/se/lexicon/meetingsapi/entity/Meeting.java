@@ -5,8 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
@@ -18,8 +16,8 @@ public class Meeting {
     private Long id;
 
     private String title;
-    private String startDate;
-    private String startTime;
+    private String date;
+    private String time;
     private String level;
     private String participants;
     private String description;
@@ -29,8 +27,8 @@ public class Meeting {
 
     public Meeting(String title, String startDate, String startTime, String level, String participants, String description) {
         this.title = title;
-        this.startDate = startDate;
-        this.startTime = startTime;
+        this.date = startDate;
+        this.time = startTime;
         this.level = level;
         this.participants = participants;
         this.description = description;
@@ -48,12 +46,12 @@ public class Meeting {
         return level;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getTime() {
+        return time;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getDate() {
+        return date;
     }
 
     public String getTitle() {
@@ -72,12 +70,12 @@ public class Meeting {
         this.title = title;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setDate(String startDate) {
+        this.date = startDate;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setTime(String startTime) {
+        this.time = startTime;
     }
 
     public void setLevel(String level) {
@@ -97,11 +95,11 @@ public class Meeting {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Meeting meeting = (Meeting) o;
-        return Objects.equals(id, meeting.id) && Objects.equals(title, meeting.title) && Objects.equals(startDate, meeting.startDate) && Objects.equals(startTime, meeting.startTime) && Objects.equals(level, meeting.level) && Objects.equals(participants, meeting.participants) && Objects.equals(description, meeting.description);
+        return Objects.equals(id, meeting.id) && Objects.equals(title, meeting.title) && Objects.equals(date, meeting.date) && Objects.equals(time, meeting.time) && Objects.equals(level, meeting.level) && Objects.equals(participants, meeting.participants) && Objects.equals(description, meeting.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, startDate, startTime, level, participants, description);
+        return Objects.hash(id, title, date, time, level, participants, description);
     }
 }

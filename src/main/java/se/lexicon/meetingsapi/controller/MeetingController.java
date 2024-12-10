@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/meetings")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class MeetingController {
     private final MeetingService meetingService;
 
@@ -35,5 +35,12 @@ public class MeetingController {
     public ResponseEntity<MeetingDto> createMeeting(@RequestBody MeetingDto meetingDto) {
         MeetingDto savedDto = meetingService.saveMeeting(meetingDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDto);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> updateMeeting(@PathVariable Long id, @RequestBody MeetingDto meetingDto) {
+        meetingService.updateMeeting(id, meetingDto);
+        return ResponseEntity.noContent().build();
     }
 }
