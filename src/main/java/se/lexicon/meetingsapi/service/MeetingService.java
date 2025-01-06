@@ -79,9 +79,8 @@ public class MeetingService {
     }
 
     public void deleteMeeting(Long id) {
-        if (meetingRepository.existsById(id)) {
-            throw new RuntimeException("Meeting not found with ID: " + id);
-        }
-        meetingRepository.deleteById(id);
+      Meeting meeting = meetingRepository.findById(id)
+              .orElseThrow(() -> new RuntimeException("Meeting not found with ID: " + id));
+      meetingRepository.delete(meeting);
     }
 }

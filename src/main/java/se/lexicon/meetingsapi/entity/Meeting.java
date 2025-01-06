@@ -4,11 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-
 import java.util.Objects;
 
-@AllArgsConstructor
 @Entity
 public class Meeting {
     @Id
@@ -25,6 +22,17 @@ public class Meeting {
     public Meeting() {
     }
 
+
+    public Meeting(Long id, String title, String date, String time, String level, String participants, String description) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+        this.time = time;
+        this.level = level;
+        this.participants = participants;
+        this.description = description;
+    }
+
     public Meeting(String title, String startDate, String startTime, String level, String participants, String description) {
         this.title = title;
         this.date = startDate;
@@ -33,6 +41,7 @@ public class Meeting {
         this.participants = participants;
         this.description = description;
     }
+
 
     public String getDescription() {
         return description;
